@@ -3,8 +3,10 @@ import { inject } from "inversify";
 import {
   controller,
   httpGet,
+  httpPost,
   interfaces,
   queryParam,
+  request,
   response
 } from "inversify-express-utils";
 import { Website } from "../models/website";
@@ -26,5 +28,14 @@ export class WebsiteController implements interfaces.Controller {
       const websites = await this.websiteRepository.search(value);
       res.status(200).send(websites);
     }
+  }
+
+  @httpPost("/")
+  async post(
+    @request() req: express.Request,
+    @response() res: express.Response
+  ) {
+    await this.websiteRepository.add(req.body);
+    res.sendStatus(200);
   }
 }

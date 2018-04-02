@@ -8,6 +8,21 @@ import { WebsiteRepository } from "./websiteRepository";
 export class WebsiteRepositoryImpl implements WebsiteRepository {
   constructor(@inject(TYPES.Database) private database: Database) {}
 
+  add(website: Website): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const statement = this.database.prepare(
+        "INSERT INTO Website VALUES(?, ?, ?)"
+      );
+      statement.run([website.url, website.title, website.description], err => {
+        if (err) {
+          reject(err);
+        }
+        statement.finalize();
+        resolve();
+      });
+    });
+  }
+
   search(value: string): Promise<Website[]> {
     return new Promise<Website[]>((resolve, reject) => {
       const websites: Website[] = [];
