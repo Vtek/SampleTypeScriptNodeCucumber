@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tsc && cucumber-js features/;",
+    "build": "tsc",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "repository": {

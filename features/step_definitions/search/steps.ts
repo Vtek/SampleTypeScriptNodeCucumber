@@ -12,7 +12,7 @@ import {
   World
 } from "cucumber";
 
-import { Website } from "../../../src/models/Website";
+import { Website } from "../../../src/models/website";
 
 import "./hooks";
 import "./world";
@@ -33,7 +33,7 @@ When("I search for {string} on Google", function(
   const app = this.server.get().build();
   chai
     .request(app)
-    .get(`/search?value=${searchValue}`)
+    .get(`/website?search=${searchValue}`)
     .end((err, res) => {
       this.actual = {
         statusCode: res.status,

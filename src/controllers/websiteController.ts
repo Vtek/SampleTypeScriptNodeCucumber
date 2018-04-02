@@ -11,15 +11,15 @@ import { Website } from "../models/website";
 import { WebsiteRepository } from "../repositories/websiteRepository";
 import { TYPES } from "../types";
 
-@controller("/search")
-export class SearchController implements interfaces.Controller {
+@controller("/website")
+export class WebsiteController implements interfaces.Controller {
   constructor(
     @inject(TYPES.WebsiteRepository)
     private websiteRepository: WebsiteRepository
   ) {}
 
   @httpGet("/")
-  async index(@queryParam("value") value, @response() res: express.Response) {
+  async index(@queryParam("search") value, @response() res: express.Response) {
     if (!value) {
       res.sendStatus(400);
     } else {

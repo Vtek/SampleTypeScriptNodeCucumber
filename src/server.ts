@@ -4,7 +4,7 @@ import * as bodyParser from "body-parser";
 import { Container } from "inversify";
 import { InversifyExpressServer } from "inversify-express-utils";
 import { Database } from "sqlite3";
-import "./controllers/search.controller";
+import "./controllers/websiteController";
 import { Website } from "./models/Website";
 import { WebsiteRepository } from "./repositories/websiteRepository";
 import { WebsiteRepositoryImpl } from "./repositories/websiteRepositoryImpl";
