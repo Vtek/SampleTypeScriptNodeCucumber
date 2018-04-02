@@ -1,6 +1,6 @@
 import { Before, CallbackStepDefinition, HookScenarioResult } from "cucumber";
 import { Database } from "sqlite3";
-import { TYPES } from "../../../src/types";
+import { TYPES } from "../../src/types";
 
 Before(function(scenario: HookScenarioResult, done: CallbackStepDefinition) {
   const database = this.server.container.get<Database>(TYPES.Database);

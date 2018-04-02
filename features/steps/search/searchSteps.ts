@@ -13,16 +13,21 @@ import {
 } from "cucumber";
 
 import { Website } from "../../../src/models/website";
+import { convertToWebsites } from "../../utils/websiteUtils";
 
-import "./hooks";
-import "./world";
+import "../../hooks/websiteHooks";
+import "../../worlds/world";
+import { SearchContext } from "./searchContext";
+
+let context: SearchContext = null;
 
 Given("these websites on the web", function(
   table: TableDefinition,
   done: CallbackStepDefinition
 ) {
+  context = this.getContext(SearchContext);
   Promise.all(
-    Array.from(this.convert(table), website => this.add(website))
+    Array.from(convertToWebsites(table), website => context.add(website))
   ).then(() => done());
 });
 
@@ -35,7 +40,7 @@ When("I search for {string} on Google", function(
     .request(app)
     .get(`/website?search=${searchValue}`)
     .end((err, res) => {
-      this.actual = {
+      context.actual = {
         statusCode: res.status,
         websites: res.body as Website[]
       };
@@ -47,9 +52,9 @@ Then("results are", function(
   table: TableDefinition,
   done: CallbackStepDefinition
 ) {
-  const expectedWebsites = this.convert(table);
+  const expectedWebsites = convertToWebsites(table);
 
-  expect(this.actual).to.be.deep.equal({
+  expect(context.actual).to.be.deep.equal({
     statusCode: 200,
     websites: expectedWebsites
   });
@@ -59,6 +64,6 @@ Then("results are", function(
 
 Then("i have an error", function(done: CallbackStepDefinition) {
   const expectedStatusCode = 400;
-  expect(this.actual.statusCode).to.be.equal(expectedStatusCode);
+  expect(context.actual.statusCode).to.be.equal(expectedStatusCode);
   done();
 });
