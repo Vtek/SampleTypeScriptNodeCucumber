@@ -6,7 +6,8 @@
     "interface-name": [true, "never-prefix"],
     "member-access": [true, "no-public"],
     "trailing-comma": [false],
-    "arrow-parens": false
+    "arrow-parens": false,
+    "only-arrow-functions": false
   },
   "rulesDirectory": []
 }
