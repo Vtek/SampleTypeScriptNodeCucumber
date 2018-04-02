@@ -4,7 +4,8 @@
   "description": "TypScript & Cucumber - Search Rest Api",
   "main": "index.js",
   "scripts": {
-    "test": "tsc && cucumber-js features/;"
+    "test": "tsc && cucumber-js features/;",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
     "@types/sqlite3": "^3.1.1",
     "chai": "^4.1.2",
     "chai-http": "^3.0.0",
-    "cucumber": "^4.0.0"
+    "cucumber": "^4.0.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1"
   }
 }
