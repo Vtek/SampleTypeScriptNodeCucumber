@@ -5,7 +5,6 @@ chai.use(chaiHttp);
 
 import {
   CallbackStepDefinition,
-  Given,
   TableDefinition,
   Then,
   When,
