@@ -3,9 +3,7 @@
     /* Basic Options */
     "target": "es5",
     "lib": [
-      "es5",
-      "es6",
-      "dom"
+      "es2015"
     ],
     "module": "commonjs",
     "sourceMap": true,
